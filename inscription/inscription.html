@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="inscription.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form method="post" autocomplete="off" name="google-sheet" id="home" >
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">NOMBRE / Nom</span>
+            <input type="text" name="Nom" id="name" placeholder="Tu nombre required">
+          </div>
+          <div class="input-box">
+            <span class="details">APELLIDO / Prenom</span>
+            <input type="text" name="Prenom" id="prenom" placeholder="tu apellido" required>
+          </div>
+          <div class="input-box">
+            <span class="details">F NACIMIENDO / D.Naissance</span>
+            <input type="date" name="Date. N" id="date" placeholder="Fecha nacimiendo" required>
+          </div>
+          <div class="input-box">
+            <span class="details">N ESTUDIOS / Niveau D'étude</span>
+            <input type="text" name="Etude" id="etude" placeholder="Nivel Estudios" required>
+          </div>
+          <div class="input-box">
+            <span class="details">PROFECION / Proffession</span>
+            <input type="text" name="Profession" id="pro" placeholder="Tu profecion" required>
+          </div>
+          <div class="input-box">
+            <span class="details">DIRECCION / Adresse</span>
+            <input type="text" name="Adresse" id="adress" placeholder="Tu direccion" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">TELEFONO / Téléphone</span>
+            <input type="text" name="Phone" id="phone" placeholder="Tu telefono" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">OPTION ELEGIDA / Cours Chosit</span>
+            <select name="Option" id="option">
+              <option value="Anglais">Anglais</option>
+              <option value="Espagnole">Espagnole</option>
+              <option value="Creole Haitien">Creole Haitien</option>
+              <option value="Informatique Bureautique">Informatique Bureautique</option>
+              <option value="Technique Informatique">Technique Informatique</option>
+              <option value="Programmation Web">Programmation Web</option>
+            </select>
+          </div>
+          
+          
+        </div>
+        <div class="gender-details" style="display: none;">
+          <p>
+            <span class="details">OPTION ELEGIDA</span><br>
+            <input type="text" name="gender" id="dot-1">
+          </p>
+          <p>
+            <span class="details">OPTION ELEGIDA</span><br>
+            <input type="text" name="gender" id="dot-2">
+          </p>
+          <p>
+            <span class="details">OPTION ELEGIDA</span><br>
+            <input type="text" name="gender" id="dot-3">
+          </p>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+
+
+      <section id="msgform">
+        <div class="img-form"><img src="/images/logo.jpg.png" alt=""></div>
+        <h1>EDDY CREOLE PRODUCTION</h1>
+        <h2>Es una compagina ubicada en boca chica, santo domingo, en la calle : Luis Leiba #5</h2>
+
+        <p>Vous avez inscrit avec succès</p>
+        <p>passez a la direction pour confirmer votre inscription</p>
+        <div class="div-btn"><button class="btn-msg" onclick="window.history.back()">Aller a la page d'accueil</button></div>
+      </section>
+    </div>
+  </div>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyc6BKnn_ORLVJbjpB_Fjy3UxWjdKtagW7sptb7ny04zYXJsYrRRgY0O0xkL3fUKzPE/exec'
+    const form = document.forms['google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => document.getElementById('home').style.display = "none")
+        .then(response => document.getElementById('msgform').style.display  = "block")
+        .then(response => document.getElementById('name').value = '')
+        .then(response => document.getElementById('prenom').value = '')
+        .then(response => document.getElementById('phone').value = '')
+        .then(response => document.getElementById('pro').value = '')
+        .then(response => document.getElementById('adresse').value = '')
+        .catch(error => console.error('Error!', error.message))
+    });
+   
+  </script>
+</body>
+</html>
